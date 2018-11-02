@@ -12,7 +12,7 @@ MySqlConnection::~MySqlConnection(void)
 	Close();
 }
 
-// ´ò¿ªÊı¾İ¿â
+// æ‰“å¼€æ•°æ®åº“
 int MySqlConnection::Open(const char *szHost, int nPort, const char *szUser, const char *szPassword, const char *szDBName)
 {
 	if (m_pMySQL != NULL)
@@ -35,7 +35,7 @@ int MySqlConnection::Open(const char *szHost, int nPort, const char *szUser, con
 	return 1;
 }
 
-// ¹Ø±ÕÊı¾İ¿â
+// å…³é—­æ•°æ®åº“
 void MySqlConnection::Close(void)
 {
 	if ( m_pMySQL != NULL )
@@ -45,13 +45,13 @@ void MySqlConnection::Close(void)
 	}
 }
 
-// É¾³ı±¾Éí
+// åˆ é™¤æœ¬èº«
 void MySqlConnection::DeleteThis(void)
 {
 	delete this;
 }
 
-// »ñÈ¡Êı¾İ¿â¶ÔÏó
+// è·å–æ•°æ®åº“å¯¹è±¡
 MYSQL* MySqlConnection::GetMySql(void)
 {
 	return m_pMySQL;
@@ -59,7 +59,7 @@ MYSQL* MySqlConnection::GetMySql(void)
 
 #ifdef __MY_SQL__
 
-// »ñÈ¡MYSQLÁ¬½Ó¶ÔÏó
+// è·å–MYSQLè¿æ¥å¯¹è±¡
 ISqlConnection* GetStaticMySqlConnection()
 {
 	static MySqlConnection *pMySqlConnection = NULL;
@@ -70,7 +70,7 @@ ISqlConnection* GetStaticMySqlConnection()
 	return pMySqlConnection;
 }
 
-// ÊµÀı»¯MYSQLÁ¬½Ó¶ÔÏó
+// å®ä¾‹åŒ–MYSQLè¿æ¥å¯¹è±¡
 ISqlConnection* GetNewMySqlConnection()
 {
 	MySqlConnection *pMySqlConnection = new MySqlConnection();

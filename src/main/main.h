@@ -21,5 +21,6 @@
 #include "../lua/lua_test.h"
 #include "../python/python_test.h"
 #include "../mysql/MySqlTest.h"
+#include "../redis/MyRedisTest.h"
 using namespace std;
 

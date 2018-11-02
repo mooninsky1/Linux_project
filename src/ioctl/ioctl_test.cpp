@@ -9,15 +9,15 @@ void CIoctl::Test()
 	SetSocketNonblock();
 }
 
-	//ÉèÖÃsocet·Ç×èÈû
+	//è®¾ç½®socetéé˜»å¡
 void CIoctl::SetSocketNonblock()
 	{
 		int fd = socket(AF_INET,SOCK_STREAM,0);
 		int flag =0;//0: clear 1: set
 		flag = fcntl(fd,F_GETFL,0);
 		printf("flag is:%d before ioctl\n",flag);
-		/*FIONBIO £º ¸ù¾İioctlµÄµÚÈı¸ö²ÎÊıÖ¸ÏòÒ»¸ö0 »ò·Ç0 Öµ·Ö±ğÇå³ı»òÉèÖÃ±¾Ì×½Ó¿ÚµÄ·Ç×èÈû±êÖ¾¡£
-		±¾ÇëÇóºÍO_NONBLOCK ÎÄ¼ş×´Ì¬±êÖ¾µÈĞ§£¬¶ø¸Ã±êÖ¾Í¨¹ıfcntl µÄF_SETFL ÃüÁîÇå³ı»òÉèÖÃ¡£*/
+		/*FIONBIO ï¼š æ ¹æ®ioctlçš„ç¬¬ä¸‰ä¸ªå‚æ•°æŒ‡å‘ä¸€ä¸ª0 æˆ–é0 å€¼åˆ†åˆ«æ¸…é™¤æˆ–è®¾ç½®æœ¬å¥—æ¥å£çš„éé˜»å¡æ ‡å¿—ã€‚
+		æœ¬è¯·æ±‚å’ŒO_NONBLOCK æ–‡ä»¶çŠ¶æ€æ ‡å¿—ç­‰æ•ˆï¼Œè€Œè¯¥æ ‡å¿—é€šè¿‡fcntl çš„F_SETFL å‘½ä»¤æ¸…é™¤æˆ–è®¾ç½®ã€‚*/
 		ioctl(fd,FIONBIO,flag);
 		flag = fcntl(fd,F_GETFL,0);
 		printf("flag is:%d after ioctl\n",flag);

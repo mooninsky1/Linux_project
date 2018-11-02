@@ -27,8 +27,12 @@ int main(int argc, char* argv[])
 	//CPythonTest::Test();
 
 	//mysql test
-	CMySqlTest::Test();
-	//pause();
+	//CMySqlTest::Test();
+
+	//redis test
+	CMyRedisTest().Test();
+	printf("Press Enter key to continue...");
+	fgetc(stdin);
 	return 0;
 }
 

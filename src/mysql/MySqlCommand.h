@@ -9,20 +9,20 @@ class MySqlCommand : public ISqlCommand
 {
 private:
 
-	/** @name  Ë½ÓĞ³ÉÔ±±äÁ¿ */////////////////////////////////////////////////////
+	/** @name  ç§æœ‰æˆå‘˜å˜é‡ */////////////////////////////////////////////////////
     /// @{
 
-	// MySqlÁ¬½Ó¶ÔÏó
+	// MySqlè¿æ¥å¯¹è±¡
 	MySqlConnection *m_pMySqlConnection;
-	// ²Ù×÷³¬Ê±
+	// æ“ä½œè¶…æ—¶
 	int m_nBusyTimeout;
-	// °ó¶¨²ÎÊı
+	// ç»‘å®šå‚æ•°
 	int m_nBandParamPostion;
-	// Ô¤·ÖÅä²ÎÊı×ÜÊı
+	// é¢„åˆ†é…å‚æ•°æ€»æ•°
 	int m_nBindParamTotal;
 	//
 	MySqlParameter *m_pMySqlParameter;
-	// °ó¶¨²ÎÊıÁĞ±í
+	// ç»‘å®šå‚æ•°åˆ—è¡¨
 	MYSQL_BIND *m_pMySqlBindParamArray;
 	MYSQL_STMT *m_pMySqlStmt;
 	/// @}
@@ -34,74 +34,74 @@ public:
 	MySqlCommand(MySqlConnection *pMySqlConnection);
 public:
 	
-	/** @name Ìí¼ÓÊäÈë²ÎÊıº¯Êı *///////////////////////////////////////////////////
+	/** @name æ·»åŠ è¾“å…¥å‚æ•°å‡½æ•° *///////////////////////////////////////////////////
     /// @{
 	
-	// Ìí¼Ó´æ´¢¹ı³Ì²ÎÊı£¨ÕûÊıÀàĞÍ£©
+	// æ·»åŠ å­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆæ•´æ•°ç±»å‹ï¼‰
 	virtual void AddIntInputParameter(const char *lpszName, int nValue);
-	// Ìí¼Ó´æ´¢¹ı³Ì²ÎÊı£¨¶ÌÕûÊıÀàĞÍ£©
-	virtual void AddShortInputParameter(const char *lpszName, int nValue);
-	// Ìí¼Ó´æ´¢¹ı³Ì²ÎÊı£¨×Ö½ÚÀàĞÍ£©
+	// æ·»åŠ å­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆçŸ­æ•´æ•°ç±»å‹ï¼‰
+	virtual void AddShortInputParameter(const char *lpszName, short nValue);
+	// æ·»åŠ å­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆå­—èŠ‚ç±»å‹ï¼‰
 	virtual void AddByteInputParameter(const char *lpszName, char byValue);
-	// Ìí¼Ó´æ´¢¹ı³Ì²ÎÊı£¨×Ö·ûÀàĞÍ£©
+	// æ·»åŠ å­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆå­—ç¬¦ç±»å‹ï¼‰
 	virtual void AddStringInputParameter(const char *lpszName, const char *lpszValue);
-	// Ìí¼Ó´æ´¢¹ı³Ì²ÎÊı£¨¶ş½øÖÆÀàĞÍ£©
+	// æ·»åŠ å­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆäºŒè¿›åˆ¶ç±»å‹ï¼‰
 	virtual void AddBinaryInputParameter(const char *lpszName, char *lpBinaryValue, int nLen);
 
 	/// @}
 
 public:
 
-	/** @name Ìí¼ÓÊä³ö²ÎÊıº¯Êı *///////////////////////////////////////////////////
+	/** @name æ·»åŠ è¾“å‡ºå‚æ•°å‡½æ•° *///////////////////////////////////////////////////
     /// @{
 
-	// Ìí¼ÓÊä³ö´æ´¢¹ı³Ì²ÎÊı£¨ÕûÊıÀàĞÍ£©
+	// æ·»åŠ è¾“å‡ºå­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆæ•´æ•°ç±»å‹ï¼‰
 	virtual void AddIntOutputParameter(const char *lpszName);
 
 	/// @}
 
 public:
 
-	/** @name »ñÈ¡·µ»Ø²ÎÊıº¯Êı *///////////////////////////////////////////////////
+	/** @name è·å–è¿”å›å‚æ•°å‡½æ•° *///////////////////////////////////////////////////
     /// @{
 
-	// »ñÈ¡´æ´¢¹ı³Ì·µ»ØµÄ²ÎÊı£¨ÕûÊıÀàĞÍ£©
+	// è·å–å­˜å‚¨è¿‡ç¨‹è¿”å›çš„å‚æ•°ï¼ˆæ•´æ•°ç±»å‹ï¼‰
 	virtual int GetIntParameterValue(const char *lpszName);
 
 	/// @}
 
 public:
 
-	/** @name Çå¿Õ¶ÔÏó²ÎÊıº¯Êı *///////////////////////////////////////////////////
+	/** @name æ¸…ç©ºå¯¹è±¡å‚æ•°å‡½æ•° *///////////////////////////////////////////////////
     /// @{
 
-	// Çå¿Õ¶ÔÏó²ÎÊı
+	// æ¸…ç©ºå¯¹è±¡å‚æ•°
 	virtual void ClearParameter();
 
 	/// @}
 public:
 
 
-	/** @name Ğé³ÉÔ±º¯Êı *///////////////////////////////////////////////////
+	/** @name è™šæˆå‘˜å‡½æ•° *///////////////////////////////////////////////////
     /// @{
 
-	// ÉèÖÃCMySqlConnectionÖ¸Õë
+	// è®¾ç½®CMySqlConnectionæŒ‡é’ˆ
 	virtual void SetSqlConnection(ISqlConnection *pSqlConnection);
-	// Ö´ĞĞÎŞ·µ»ØÖµ
+	// æ‰§è¡Œæ— è¿”å›å€¼
 	virtual void ExecuteNonQuery(const char * strSQL, int bUseStoredProc = 0);
-	// Ö´ĞĞÎŞ·µ»ØÖµ
+	// æ‰§è¡Œæ— è¿”å›å€¼
 	virtual int ExecuteQuery(const char * strSQL, int bUseStoredProc = 0);
-	// Ö´ĞĞ²éÑ¯½á¹û
+	// æ‰§è¡ŒæŸ¥è¯¢ç»“æœ
 	virtual ISqlDataReader* ExecuteReader(const char * strSQL, int bUseStoredProc = 0);
-	// Ö´ĞĞ²éÑ¯½á¹û
+	// æ‰§è¡ŒæŸ¥è¯¢ç»“æœ
 	virtual int ExecuteReader(ISqlDataReader *pSqlDataReader, const char * strSQL, int bUseStoredProc = 0);
-	// Ö´ĞĞ²éÑ¯½á¹û
+	// æ‰§è¡ŒæŸ¥è¯¢ç»“æœ
 	virtual int ExecuteScalar(const char * strSQL, int bUseStoredProc = 0);
 	// 
 	virtual void ExecuteBegin(void);
 	//
 	virtual void ExecuteEnd(void);
-	// É¾³ı±¾Éí
+	// åˆ é™¤æœ¬èº«
 	virtual void DeleteThis(void);
 
 	/// @}

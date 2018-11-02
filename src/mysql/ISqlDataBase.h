@@ -5,84 +5,84 @@ using namespace std;
 class ISqlConnection
 {
 public:
-	// ´ò¿ªÊı¾İ¿â
+	// æ‰“å¼€æ•°æ®åº“
 	virtual int Open(const char *szHost, int nPort, const char *szUser, const char *szPassword, const char *szDBName) = 0;
-	// ¹Ø±ÕÊı¾İ¿â
+	// å…³é—­æ•°æ®åº“
 	virtual void Close(void) = 0;
-	// É¾³ı±¾Éí
+	// åˆ é™¤æœ¬èº«
 	virtual void DeleteThis(void) = 0;
 };
 
 //#if defined (__MS_SQL__)
-// »ñÈ¡MSSQLÁ¬½Ó¶ÔÏó
+// è·å–MSSQLè¿æ¥å¯¹è±¡
 //ISqlConnection* GetStaticMsSqlConnection();
-// ÊµÀı»¯MSSQLÁ¬½Ó¶ÔÏó
+// å®ä¾‹åŒ–MSSQLè¿æ¥å¯¹è±¡
 //ISqlConnection* GetNewMsSqlConnection();
 //#elif defined (__MY_SQL__)
-// »ñÈ¡MYSQLÁ¬½Ó¶ÔÏó
+// è·å–MYSQLè¿æ¥å¯¹è±¡
 ISqlConnection* GetStaticMySqlConnection();
-// ÊµÀı»¯MYSQLÁ¬½Ó¶ÔÏó
+// å®ä¾‹åŒ–MYSQLè¿æ¥å¯¹è±¡
 ISqlConnection* GetNewMySqlConnection();
 //#endif
 
 class ISqlDataReader
 {
 public:
-	// ÊÇ·ñÒÑ¾­½áÊø
+	// æ˜¯å¦å·²ç»ç»“æŸ
 	virtual int Read() = 0;
-	// ÒÆ¶¯ÏÂÒ»Ìõ¼ÇÂ¼
+	// ç§»åŠ¨ä¸‹ä¸€æ¡è®°å½•
 	virtual int MoveNext() = 0;
-	// »ñÈ¡Ë÷Òı×Ö·û´®
+	// è·å–ç´¢å¼•å­—ç¬¦ä¸²
 	virtual const char* GetFieldValue(int nField) = 0;
-	// »ñÈ¡Ë÷Òı×Ö·û´®
+	// è·å–ç´¢å¼•å­—ç¬¦ä¸²
 	virtual const char* GetFieldValue(const char *strFieldName) = 0;
-	// »ñÈ¡Ë÷ÒıÕûÊı
+	// è·å–ç´¢å¼•æ•´æ•°
 	virtual int GetIntField(int nField, int nNullValue = 0) = 0;
-	// »ñÈ¡Ë÷ÒıÕûÊı
+	// è·å–ç´¢å¼•æ•´æ•°
 	virtual int GetIntField(const char *strFieldName, int nNullValue = 0) = 0;
-	// »ñÈ¡Ë÷Òı¸¡µãÊı
+	// è·å–ç´¢å¼•æµ®ç‚¹æ•°
 	virtual float GetFloatField(int nField, float fNullValue = 0.0) = 0;
-	// »ñÈ¡Ë÷Òı¸¡µãÊı
+	// è·å–ç´¢å¼•æµ®ç‚¹æ•°
 	virtual float GetFloatField(const char *strFieldName, float fNullValue = 0.0) = 0;
-	// »ñÈ¡Ë÷Òı¸¡µãÊı
+	// è·å–ç´¢å¼•æµ®ç‚¹æ•°
 	virtual double GetDoubleField(int nField, double dNullValue = 0.0) = 0;
-	// »ñÈ¡Ë÷Òı¸¡µãÊı
+	// è·å–ç´¢å¼•æµ®ç‚¹æ•°
 	virtual double GetDoubleField(const char *strFieldName, double dNullValue = 0.0) = 0;
-	// »ñÈ¡Ë÷Òı×Ö·û´®
+	// è·å–ç´¢å¼•å­—ç¬¦ä¸²
 	virtual string GetStringField(int nField, const char *strNullValue = "") = 0;
-	// »ñÈ¡Ë÷Òı×Ö·û´®
+	// è·å–ç´¢å¼•å­—ç¬¦ä¸²
 	virtual string GetStringField(const char *strFieldName, const char *strNullValue = "") = 0;
-	// »ñÈ¡Ë÷Òı¶ş½øÖÆ
+	// è·å–ç´¢å¼•äºŒè¿›åˆ¶
 	virtual int GetBinaryField(int nField, char *lpszContent, unsigned int uMaxLen, int nNullValue = 0) = 0;
-	// »ñÈ¡Ë÷Òı¶ş½øÖÆ
+	// è·å–ç´¢å¼•äºŒè¿›åˆ¶
 	virtual int GetBinaryField(const char *strFieldName, char *lpszContent, unsigned int uMaxLen, int nNullValue = 0) = 0;
-	// ÅĞ¶Ï×Ö¶ÎÊÇ·ñÎª¿Õ
+	// åˆ¤æ–­å­—æ®µæ˜¯å¦ä¸ºç©º
 	virtual int IsFieldNull(int nField) = 0;
-	// ÅĞ¶Ï×Ö¶ÎÊÇ·ñÎª¿Õ
+	// åˆ¤æ–­å­—æ®µæ˜¯å¦ä¸ºç©º
 	virtual int IsFieldNull(const char *strFieldName) = 0;
-	// »ñÈ¡Ë÷Òı×Ö¶ÎÃû³Æ
+	// è·å–ç´¢å¼•å­—æ®µåç§°
 	virtual const char* GetFieldName(int nColumn) = 0;
-	// »ñÈ¡Ë÷ÒıÎ»ÖÃ
+	// è·å–ç´¢å¼•ä½ç½®
 	virtual int GetFieldIndex(const char *strFieldName) = 0;
-	// »ñÈ¡×Ö¶ÎÁĞ×ÜÊı
+	// è·å–å­—æ®µåˆ—æ€»æ•°
 	virtual int GetFieldCount() = 0;
-	// »ñÈ¡¼ÇÂ¼×ÜÊı
+	// è·å–è®°å½•æ€»æ•°
 	virtual int GetRowCount() = 0;
-	// ÖÕ½á²Ù×÷
+	// ç»ˆç»“æ“ä½œ
 	virtual void Close() = 0;
-	// É¾³ı±¾Éí
+	// åˆ é™¤æœ¬èº«
 	virtual void DeleteThis(void) = 0;
 };
 
 //#if defined (__MS_SQL__)
-// »ñÈ¡MSSQL¶ÁÈ¡¶ÔÏó
+// è·å–MSSQLè¯»å–å¯¹è±¡
 //ISqlDataReader* GetStaticMsSqlDataReader();
-// ÊµÀı»¯MSSQL¶ÁÈ¡¶ÔÏó
+// å®ä¾‹åŒ–MSSQLè¯»å–å¯¹è±¡
 //ISqlDataReader* GetNewMsSqlDataReader();
 //#elif defined (__MY_SQL__)
-// »ñÈ¡MYSQL¶ÁÈ¡¶ÔÏó
+// è·å–MYSQLè¯»å–å¯¹è±¡
 ISqlDataReader* GetStaticMySqlDataReader();
-// ÊµÀı»¯MYSQL¶ÁÈ¡¶ÔÏó
+// å®ä¾‹åŒ–MYSQLè¯»å–å¯¹è±¡
 ISqlDataReader* GetNewMySqlDataReader();
 //#endif
 
@@ -90,97 +90,97 @@ class ISqlCommand
 {
 public:
 	
-	/** @name Ìí¼ÓÊäÈë²ÎÊıº¯Êı *///////////////////////////////////////////////////
+	/** @name æ·»åŠ è¾“å…¥å‚æ•°å‡½æ•° *///////////////////////////////////////////////////
     /// @{
 	
-	// Ìí¼Ó´æ´¢¹ı³Ì²ÎÊı£¨ÕûÊıÀàĞÍ£©
+	// æ·»åŠ å­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆæ•´æ•°ç±»å‹ï¼‰
 	virtual void AddIntInputParameter(const char *lpszName, int nValue) = 0;
-	// Ìí¼Ó´æ´¢¹ı³Ì²ÎÊı£¨¶ÌÕûÊıÀàĞÍ£©
+	// æ·»åŠ å­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆçŸ­æ•´æ•°ç±»å‹ï¼‰
 	virtual void AddShortInputParameter(const char *lpszName, short nValue) = 0;
-	// Ìí¼Ó´æ´¢¹ı³Ì²ÎÊı£¨×Ö½ÚÀàĞÍ£©
+	// æ·»åŠ å­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆå­—èŠ‚ç±»å‹ï¼‰
 	virtual void AddByteInputParameter(const char *lpszName, char byValue) = 0;
-	// Ìí¼Ó´æ´¢¹ı³Ì²ÎÊı£¨×Ö·ûÀàĞÍ£©
+	// æ·»åŠ å­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆå­—ç¬¦ç±»å‹ï¼‰
 	virtual void AddStringInputParameter(const char *lpszName, const char *lpszValue) = 0;
-	// Ìí¼Ó´æ´¢¹ı³Ì²ÎÊı£¨¶ş½øÖÆÀàĞÍ£©
+	// æ·»åŠ å­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆäºŒè¿›åˆ¶ç±»å‹ï¼‰
 	virtual void AddBinaryInputParameter(const char *lpszName, char *lpszValue, int nLen) = 0;
 
 	/// @}
 
 public:
 
-	/** @name Ìí¼ÓÊä³ö²ÎÊıº¯Êı *///////////////////////////////////////////////////
+	/** @name æ·»åŠ è¾“å‡ºå‚æ•°å‡½æ•° *///////////////////////////////////////////////////
     /// @{
 
-	// Ìí¼ÓÊä³ö´æ´¢¹ı³Ì²ÎÊı£¨ÕûÊıÀàĞÍ£©
+	// æ·»åŠ è¾“å‡ºå­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆæ•´æ•°ç±»å‹ï¼‰
 	virtual void AddIntOutputParameter(const char *lpszName) = 0;
 
 	/// @}
 
 public:
 
-	/** @name »ñÈ¡·µ»Ø²ÎÊıº¯Êı *///////////////////////////////////////////////////
+	/** @name è·å–è¿”å›å‚æ•°å‡½æ•° *///////////////////////////////////////////////////
     /// @{
 
-	// »ñÈ¡´æ´¢¹ı³Ì·µ»ØµÄ²ÎÊı£¨ÕûÊıÀàĞÍ£©
+	// è·å–å­˜å‚¨è¿‡ç¨‹è¿”å›çš„å‚æ•°ï¼ˆæ•´æ•°ç±»å‹ï¼‰
 	virtual int GetIntParameterValue(const char *lpszName) = 0;
 
 	/// @}
 
 public:
 
-	/** @name Çå¿Õ¶ÔÏó²ÎÊıº¯Êı *///////////////////////////////////////////////////
+	/** @name æ¸…ç©ºå¯¹è±¡å‚æ•°å‡½æ•° *///////////////////////////////////////////////////
     /// @{
 
-	// Çå¿Õ¶ÔÏó²ÎÊı
+	// æ¸…ç©ºå¯¹è±¡å‚æ•°
 	virtual void ClearParameter() = 0;
 
 	/// @}
 
 public:
 
-	/** @name Ö´ĞĞSQLÓï¾äº¯Êı *///////////////////////////////////////////////////
+	/** @name æ‰§è¡ŒSQLè¯­å¥å‡½æ•° *///////////////////////////////////////////////////
     /// @{
 
 
-	// Ö´ĞĞÎŞ·µ»ØÖµ
+	// æ‰§è¡Œæ— è¿”å›å€¼
 	virtual void ExecuteNonQuery(const char * strSQL, int bUseStoredProc = 0) = 0;
-	// Ö´ĞĞÎŞ·µ»ØÖµ
+	// æ‰§è¡Œæ— è¿”å›å€¼
 	virtual int ExecuteQuery(const char * strSQL, int bUseStoredProc = 0) = 0;
-	// Ö´ĞĞ²éÑ¯½á¹û
+	// æ‰§è¡ŒæŸ¥è¯¢ç»“æœ
 	virtual ISqlDataReader* ExecuteReader(const char * strSQL, int bUseStoredProc = 0) = 0;
-	// Ö´ĞĞ²éÑ¯½á¹û
+	// æ‰§è¡ŒæŸ¥è¯¢ç»“æœ
 	virtual int ExecuteReader(ISqlDataReader *pSqlDataReader, const char * strSQL, int bUseStoredProc = 0) = 0;
-	// Ö´ĞĞ²éÑ¯½á¹û
+	// æ‰§è¡ŒæŸ¥è¯¢ç»“æœ
 	virtual int ExecuteScalar(const char * strSQL, int bUseStoredProc = 0) = 0;
 
 	/// @}
 
 public:
 
-	/** @name Ğé³ÉÔ±º¯Êı *///////////////////////////////////////////////////
+	/** @name è™šæˆå‘˜å‡½æ•° *///////////////////////////////////////////////////
     /// @{
 
-	// ÉèÖÃSqlConnectionÖ¸Õë
+	// è®¾ç½®SqlConnectionæŒ‡é’ˆ
 	virtual void SetSqlConnection(ISqlConnection *pSqlConnection) = 0;
-	// ¿ªÊ¼Ö´ĞĞ
+	// å¼€å§‹æ‰§è¡Œ
 	virtual void ExecuteBegin(void) = 0;
-	// ½áÊøÖ´ĞĞ
+	// ç»“æŸæ‰§è¡Œ
 	virtual void ExecuteEnd(void) = 0;
-	// É¾³ı±¾Éí
+	// åˆ é™¤æœ¬èº«
 	virtual void DeleteThis(void) = 0;
 
 	/// @}
 };
 
 //#if defined (__MS_SQL__)
-// »ñÈ¡MSSQLÃüÁî¶ÔÏó
+// è·å–MSSQLå‘½ä»¤å¯¹è±¡
 //ISqlCommand* GetStaticMsSqlCommand();
-// ÊµÀı»¯MSSQLÃüÁî¶ÔÏó
+// å®ä¾‹åŒ–MSSQLå‘½ä»¤å¯¹è±¡
 //ISqlCommand* GetNewMsSqlCommand();
 //#elif defined (__MY_SQL__)
-// »ñÈ¡MYSQLÃüÁî¶ÔÏó
+// è·å–MYSQLå‘½ä»¤å¯¹è±¡
 ISqlCommand* GetStaticMySqlCommand();
-// ÊµÀı»¯MYSQLÃüÁî¶ÔÏó
+// å®ä¾‹åŒ–MYSQLå‘½ä»¤å¯¹è±¡
 ISqlCommand* GetNewMySqlCommand();
 //#endif
 

@@ -42,56 +42,56 @@ void MySqlCommand::SetSqlConnection(ISqlConnection *pSqlConnection)
 	}
 }
 
-// Ìí¼Ó´æ´¢¹ý³Ì²ÎÊý£¨ÕûÊýÀàÐÍ£©
+// æ·»åŠ å­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆæ•´æ•°ç±»åž‹ï¼‰
 void MySqlCommand::AddIntInputParameter(const char *lpszName, int nValue)
 {
 
 }
 
-// Ìí¼Ó´æ´¢¹ý³Ì²ÎÊý£¨¶ÌÕûÊýÀàÐÍ£©
-void MySqlCommand::AddShortInputParameter(const char *lpszName, int nValue)
+// æ·»åŠ å­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆçŸ­æ•´æ•°ç±»åž‹ï¼‰
+void MySqlCommand::AddShortInputParameter(const char *lpszName, short nValue)
 {
 
 }
 	
 
-// Ìí¼Ó´æ´¢¹ý³Ì²ÎÊý£¨×Ö½ÚÀàÐÍ£©
+// æ·»åŠ å­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆå­—èŠ‚ç±»åž‹ï¼‰
 void MySqlCommand::AddByteInputParameter(const char *lpszName, char byValue)
 {
 
 }
 	
-// Ìí¼Ó´æ´¢¹ý³Ì²ÎÊý£¨×Ö·ûÀàÐÍ£©
+// æ·»åŠ å­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆå­—ç¬¦ç±»åž‹ï¼‰
 void MySqlCommand::AddStringInputParameter(const char *lpszName, const char *lpszValue)
 {
 
 }
 
-// Ìí¼Ó´æ´¢¹ý³Ì²ÎÊý£¨¶þ½øÖÆÀàÐÍ£©
+// æ·»åŠ å­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆäºŒè¿›åˆ¶ç±»åž‹ï¼‰
 void MySqlCommand::AddBinaryInputParameter(const char *lpszName, char *lpBinaryValue, int nLen)
 {
 	m_pMySqlParameter->AddBinaryInputParameter(lpszName, lpBinaryValue, nLen);
 }
 
-// »ñÈ¡´æ´¢¹ý³Ì·µ»ØµÄ²ÎÊý£¨ÕûÊýÀàÐÍ£©
+// èŽ·å–å­˜å‚¨è¿‡ç¨‹è¿”å›žçš„å‚æ•°ï¼ˆæ•´æ•°ç±»åž‹ï¼‰
 int MySqlCommand::GetIntParameterValue(const char *lpszName)
 {
 	return 0;
 }
 	
-// Ìí¼ÓÊä³ö´æ´¢¹ý³Ì²ÎÊý£¨ÕûÊýÀàÐÍ£©
+// æ·»åŠ è¾“å‡ºå­˜å‚¨è¿‡ç¨‹å‚æ•°ï¼ˆæ•´æ•°ç±»åž‹ï¼‰
 void MySqlCommand::AddIntOutputParameter(const char *lpszName)
 {
 
 }
 
-// Çå¿Õ¶ÔÏó²ÎÊý
+// æ¸…ç©ºå¯¹è±¡å‚æ•°
 void MySqlCommand::ClearParameter()
 {
 
 }
 
-// Ö´ÐÐÎÞ·µ»ØÖµ
+// æ‰§è¡Œæ— è¿”å›žå€¼
 void MySqlCommand::ExecuteNonQuery(const char * strSQL, int bUseStoredProc/* = 0*/)
 {
 	if (m_pMySqlConnection == NULL)
@@ -130,7 +130,7 @@ void MySqlCommand::ExecuteNonQuery(const char * strSQL, int bUseStoredProc/* = 0
 	m_pMySqlParameter->RunExecuteBindParameter(pMySQL, m_pMySqlStmt, strSQL);
 }
 
-// Ö´ÐÐÎÞ·µ»ØÖµ
+// æ‰§è¡Œæ— è¿”å›žå€¼
 int MySqlCommand::ExecuteQuery(const char * strSQL, int bUseStoredProc/* = 0*/)
 {
 	if (m_pMySqlConnection == NULL)
@@ -152,7 +152,7 @@ int MySqlCommand::ExecuteQuery(const char * strSQL, int bUseStoredProc/* = 0*/)
 		std::cout << "MySqlCommand::ExecuteQuery error:" << lpszError << std::endl;
 		return 0;
 	}
-	// ·µ»Ø²Ù×÷Ó°ÏìµÄÐÐÊý
+	// è¿”å›žæ“ä½œå½±å“çš„è¡Œæ•°
 	int nReturn = (int)mysql_affected_rows(pMySQL);
 	//
 	do
@@ -165,7 +165,7 @@ int MySqlCommand::ExecuteQuery(const char * strSQL, int bUseStoredProc/* = 0*/)
 	return nReturn;
 }
 
-// Ö´ÐÐ²éÑ¯½á¹û
+// æ‰§è¡ŒæŸ¥è¯¢ç»“æžœ
 int MySqlCommand::ExecuteScalar(const char * strSQL, int bUseStoredProc/* = 0*/)
 {
 	if (m_pMySqlConnection == NULL)
@@ -199,7 +199,7 @@ int MySqlCommand::ExecuteScalar(const char * strSQL, int bUseStoredProc/* = 0*/)
 	return nReturn;
 }
 
-// Ö´ÐÐ²éÑ¯½á¹û
+// æ‰§è¡ŒæŸ¥è¯¢ç»“æžœ
 ISqlDataReader* MySqlCommand::ExecuteReader(const char * strSQL, int bUseStoredProc/* = 0*/)
 {
 	if (m_pMySqlConnection == NULL)
@@ -226,7 +226,7 @@ ISqlDataReader* MySqlCommand::ExecuteReader(const char * strSQL, int bUseStoredP
 	return pMySqlDataReader;
 }
 
-// Ö´ÐÐ²éÑ¯½á¹û
+// æ‰§è¡ŒæŸ¥è¯¢ç»“æžœ
 int MySqlCommand::ExecuteReader(ISqlDataReader *pSqlDataReader, const char * strSQL, int bUseStoredProc/* = 0*/)
 {
 	if (m_pMySqlConnection == NULL)
@@ -292,7 +292,7 @@ void MySqlCommand::ExecuteEnd(void)
 	}
 }
 
-// É¾³ý±¾Éí
+// åˆ é™¤æœ¬èº«
 void MySqlCommand::DeleteThis(void)
 {
 	delete this;
@@ -300,7 +300,7 @@ void MySqlCommand::DeleteThis(void)
 
 #ifdef __MY_SQL__
 
-// »ñÈ¡MYSQLÃüÁî¶ÔÏó
+// èŽ·å–MYSQLå‘½ä»¤å¯¹è±¡
 ISqlCommand* GetStaticMySqlCommand()
 {
 	static MySqlCommand *pMySqlCommand = NULL;
@@ -311,7 +311,7 @@ ISqlCommand* GetStaticMySqlCommand()
 	return pMySqlCommand;
 }
 
-// ÊµÀý»¯MYSQLÃüÁî¶ÔÏó
+// å®žä¾‹åŒ–MYSQLå‘½ä»¤å¯¹è±¡
 ISqlCommand* GetNewMySqlCommand()
 {
 	MySqlCommand *pMySqlCommand = new MySqlCommand();

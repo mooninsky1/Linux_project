@@ -1,13 +1,13 @@
 #include <sys/mman.h>
 /*
-1.mmap й╧сцMAP_SHARED©ирт╦дп╢╩ьнд╪Ч сцMAP_PRIVATEнч╥╗п╢╩ьнд╪Ч
+1.mmap Д╫©Г■╗MAP_SHAREDЕ▐╞Д╩╔Ф■╧Е├≥Е⌡·Ф√┤Д╩╤ Г■╗MAP_PRIVATEФ≈═ФЁ∙Е├≥Е⌡·Ф√┤Д╩╤
 */
 class Cmmap
 {
 public:
 	static void Test();
 
-	//╦Знд╪Чдз╢ФсЁиДё╛ж╠╫с╥цнйдз╢Фё╛пч╦днд╪Ч
+	//Х╥÷Ф√┤Д╩╤Е├┘Е╜≤Ф≤═Е╟└О╪▄Г⌡╢Ф▌╔Х╝©И≈╝Е├┘Е╜≤О╪▄Д©╝Ф■╧Ф√┤Д╩╤
 	static void mmap_other();
 	static void mmap_my();
 };

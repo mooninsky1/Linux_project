@@ -3,7 +3,7 @@ BASEDIR ?= ./src
 
 INC = -I./include -I/usr/include/python2.6
 #INC += -I$(BASEDIR)/vdlib/include/
-INC += -Wall -g -DTHIS_VERSION=\"$(VERSION)\" -D__STDC_LIMIT_MACROS
+INC += -Wall -g -DTHIS_VERSION=\"$(VERSION)\" -D__STDC_LIMIT_MACROS -D __MY_SQL__
 MAJOR=0
 MINOR=0
 REV=0
@@ -26,7 +26,8 @@ Objects = $(patsubst %.cpp, %.o, $(SRCS))
 
 #Objects += $(patsubst src/%.cpp, ${OBJDIR}/%.o, $(wildcard src/*.cpp))
 
-Library=-L./xml -L/usr/lib64/mysql -L/usr/lib64 -L/usr/local/lib -L/usr/lib/python2.6 -lpthread -lmongoclient -lmysqlclient -lboost_thread-mt -lboost_filesystem -lboost_program_options   -llua -ldl -lpython2.6
+Library  = -L./xml -L/usr/lib64/mysql -L/usr/lib64 -L/usr/local/lib -L/usr/lib/python2.6 -lpthread -lmongoclient -lmysqlclient -lboost_thread-mt -lboost_filesystem -lboost_program_options   -llua -ldl -lpython2.6
+Library += -lhiredis
 #VPATH = ./:../common
 all:$(Target)
 
