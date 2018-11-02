@@ -38,20 +38,20 @@ void knapsack()
 void Test()
 {
 	int i,j;
-	printf("ÊäÈëÎïÆ·ÖÖÊı:"); 
+	printf("è¾“å…¥ç‰©å“ç§æ•°:"); 
 	scanf("%d",&n);
 
-	printf("ÊäÈëÃ¿ÖÖÎïÆ·µÄÖØÁ¿Óë¼ÛÖµ:\n");
+	printf("è¾“å…¥æ¯ç§ç‰©å“çš„é‡é‡ä¸ä»·å€¼:\n");
 	for (i=1; i<=n; i++)
 		scanf("%d%d",&w[i],&v[i]);
 
-	printf("ÊäÈë±³°üµÄ×ÜÖØÁ¿:\n"); 
+	printf("è¾“å…¥èƒŒåŒ…çš„æ€»é‡é‡:\n"); 
 	scanf("%d",&c); 
 
 	knapsack();  
 	disp();
 
-	printf("×î´ó¼ÛÖµ=%d\n",m[0][c]);
+	printf("æœ€å¤§ä»·å€¼=%d\n",m[0][c]);
 	for (i=1; i<=n; i++)
 	{	for (j=0; j<=c; j++)
 	printf("%3d",m[i][j]);

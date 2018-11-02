@@ -1,5 +1,6 @@
 #include "MyRedisTest.h"
 #include <string.h>
+#include <stdlib.h>
 
  redisContext* CMyRedisTest::ConnectRedis()
  {
@@ -40,7 +41,7 @@ void CMyRedisTest::DoCmd( redisContext* c, const char* szCmd)
 void CMyRedisTest::Test()
 {
    //TestBinary();
-   //TestSaveObject();
+   TestSaveObject();
    TestLoadObject();
    
 }
@@ -170,7 +171,7 @@ void CMyRedisTest::Test()
        redisCommand(c, "HMSET  person_%d arr %b", obj.uuid, obj.arr,sizeof(obj.arr) );
 
     }
-    void CMyRedisTest::TestLoadObject()
+ void CMyRedisTest::TestLoadObject()
     {
         CRedisObj obj;
      
@@ -192,12 +193,38 @@ void CMyRedisTest::Test()
                
               printf("type:%d,%s \n",reply->element[j]->type,reply->element[j]->str) ;
               //key vluae ,过滤value
-              redisReply *replyValue = (redisReply *)redisCommand(c, "HMGET person_%d %s ",1, reply->element[j]->str );
-              printf("%s, type:%d,len:%d\n",replyValue->str,replyValue->type,replyValue->len) ;
+              redisReply *replyValue = (redisReply *)redisCommand(c, "HGET person_%d %s ",1, reply->element[j]->str );
+              //printf("%s, type:%d,len:%d\n",replyValue->str,replyValue->type,replyValue->len) ;
+              if(replyValue)
+              {
+                  printf("%s:%s\n",reply->element[j]->str,replyValue->str) ;
+                  if(0 == strcmp(reply->element[j]->str,"uuid"))
+                  {
+                      
+                      //memcpy(&obj.uuid,replyValue->str,replyValue->len);
+                      obj.uuid = atoi(replyValue->str);
+                  }
+                  else if(0 == strcmp(reply->element[j]->str,"name") )
+                  {
+                     memcpy(obj.name,replyValue->str,15);
+                  }
+                 else   if(0 == strcmp(reply->element[j]->str,"age"))
+                  {
+                     // memcpy(&obj.age,replyValue->str,replyValue->len);
+                     obj.age =  atoi(replyValue->str);
+                  }
+                 else   if(0 == strcmp(reply->element[j]->str,"job"))
+                  {
+                      //memcpy(&obj.job,replyValue->str,replyValue->len);
+                       obj.job = atoi(replyValue->str);
+                  }
+                 else   if(0 == strcmp(reply->element[j]->str,"arr"))
+                  {
+                     memcpy(obj.arr,replyValue->str,replyValue->len);
+                  }
+              }
               j++;
-               
-              // tmp += hashHget(key, reply->element[j]->str);
-    
            }
        }
+       printf("obj uuid:%d,name:%s,age:%d,job:%d\n",obj.uuid,obj.name,obj.age,obj.job);
     }

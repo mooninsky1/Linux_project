@@ -8,6 +8,12 @@ class CRedisObj
     int  age;
     int  job;
     int  arr[4];
+    CRedisObj()
+    {
+      uuid = 0;
+      age = 0;
+      job = 0;
+    }
 };
 class CMyRedisTest
 {
